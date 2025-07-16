@@ -176,7 +176,7 @@ class PostFetchTest extends TestCase
         $response->assertStatus(200);
         foreach ($response->json() as $post) {
             $this->assertArrayHasKey('title', $post);
-            $this->assertArrayHasKey('text', $post);
+            $this->assertArrayHasKey('content', $post);
             $this->assertArrayHasKey('user', $post);
         }
     }

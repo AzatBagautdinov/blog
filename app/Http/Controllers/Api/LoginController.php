@@ -16,7 +16,6 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        // Проверка аутентификации
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'Неверный email или пароль',
@@ -25,7 +24,6 @@ class LoginController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        // Создание accessToken
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([

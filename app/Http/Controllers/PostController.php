@@ -12,14 +12,18 @@ class PostController extends Controller
 
     public function store(Request $request, PostService $postService)
     {
-        $post = $postService->createPost($request->all());
+        $validated = $request->validate([
+            'title'   => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $post = $postService->createPost($validated);
 
         return response()->json([
             'message' => 'Пост успешно опубликован',
             'post'    => $post,
         ], 201);
     }
-
 
     public function index(Request $request, PostService $postService)
     {

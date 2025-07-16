@@ -79,14 +79,14 @@ class PostService
         }
 
         $validated = validator($data, [
-            'title' => 'required|string|max:255',
-            'text'  => 'required|string|max:2000',
+            'title'   => 'required|string|max:255',
+            'content' => 'required|string|max:2000',
         ])->validate();
 
         return Post::create([
             'user_id' => $user->id,
             'title'   => $validated['title'],
-            'text'    => $validated['text'],
+            'content' => $validated['content'],
         ]);
     }
 
